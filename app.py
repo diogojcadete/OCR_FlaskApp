@@ -25,7 +25,7 @@ def ocr_and_get_font(image_path):
     with PyTessBaseAPI(path='tessdata-main') as api:
         api.SetImageFile(image_path)
         api.Recognize()
-        ri = api.GetIterator() #OCR
+        ri = api.GetIterator()
         level = RIL.SYMBOL
         counter = 0
         total_font_size = 0
@@ -38,7 +38,7 @@ def ocr_and_get_font(image_path):
             if symbol:
                 total_font_size += word_attributes['pointsize']
                 counter += 1
-                print(u'symbol {}, font: {}, size {}'.format(symbol, word_attributes['pointsize']))
+                print(u'symbol {}, font: {}, size {}'.format(symbol, word_attributes['font_name'], word_attributes['pointsize']))
 
         if counter > 0:
             average_font_size = total_font_size / counter
